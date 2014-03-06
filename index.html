@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Chat On Messenger 1.0.0</title>
+    <style>
+        #chatDiv {
+            height: 300px;
+            background-color: burlywood;
+        }
+    </style>
+</head>
+<body>
+    <div id="chatDiv"></div>
+    <form id="sendMsg">
+        <input size="35" id="txtMessage"/>
+        <input type="submit" />
+    </form>
+    
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        jQuery(function($) {
+            var socket = io.connect();
+            var $msgForm = $('#sendMsg');
+            var $msgBox = $('#chatDiv');
+            var $msg = $('#txtMessage');
+
+            $msgForm.submit(function(e) {
+                e.preventDefault();
+                socket.emit('send message', $msg.val());
+                $msg.val('');
+            });
+
+            socket.on('new message' , function(data) {
+                $msgBox.append(data + '<br/>');
+            });
+        });
+    </script>
+</body>
+</html>
