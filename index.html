@@ -84,7 +84,7 @@
             border: #86c840 2px double;
             height: 400px;
             float: left;
-            width: 80%;
+            width: 90%;
             overflow: scroll;
         }
 
@@ -112,7 +112,15 @@
             width: 50px;
             float: right;
             height: 400px;
-            width: 19%;
+            width: 9%;
+            text-align: center;
+            font-size: medium;
+            font-weight: bolder;
+            
+        }
+
+        .slider-left h1, h3{
+            text-align: center;
         }
     </style>
 </head>
@@ -127,10 +135,14 @@
                     <div>
                         <div class="chat-border" id="chatDiv">
                             <div class="chat-text">
-                                <b>*****************************      Welcome      *******************************</b>
+                                <b>Have a nice day !!....</b>
                             </div>
                         </div>
-                        <div class="online-users" id="onlineUsers"></div>
+                        <div class="online-users">
+                            <div>Users Online<hr /></div>
+                            <div id="onlineUsers">
+                            </div>
+                        </div>
                     </div>
                     <div>
                         <form id="sendMsg">
@@ -156,6 +168,9 @@
     <script>
         String.prototype.capitalize = function () {
             return this.charAt(0).toUpperCase() + this.slice(1);
+        };
+        String.prototype.isBlank = function () {
+            return (/^\s*$/.test(this));
         };
 
         jQuery(function ($) {
@@ -184,8 +199,12 @@
 
             $msgForm.submit(function (e) {
                 e.preventDefault();
-                socket.emit('send message', $msg.val());
-                $msg.val('');
+                var msgText = $msg.val();
+
+                if (!msgText.isBlank()) {
+                    socket.emit('send message', msgText);
+                    $msg.val('');
+                }
             });
 
             socket.on('new message', function (data) {
@@ -197,7 +216,7 @@
             socket.on('usernames', function (data) {
                 var html = '';
                 for (var i = 0; i < data.length; i++) {
-                    html += data[i] + '</br>';
+                    html += '<div>' + data[i].capitalize() + '</div>';
                 }
                 $('#onlineUsers').html(html);
             });
