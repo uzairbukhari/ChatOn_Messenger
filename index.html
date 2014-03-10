@@ -2,246 +2,207 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Chat On Messenger 1.0.0</title>
-    <link rel="shortcut icon" type="image/x-icon" href="images/fave-icon.png" />
     <link href="style/style.css" rel="stylesheet" />
-    
-    <style>
-    html, body {
-        margin: 0;
-        padding: 0;
-        border: 0;
-        font-size: 100%;
-        font: inherit;
-        vertical-align: baseline;
-    }
-
-    .clear {
-        clear: both;
-    }
-    /* horizontal menu */
-    img {
-        max-width: 100%;
-    }
-
-    @font-face {
-        font-family: 'permianslabseriftypefaceRg';
-        src: url('./fonts/PermianSlabSerifTypeface-webfont.eot');
-        src: url('./fonts/PermianSlabSerifTypeface-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/PermianSlabSerifTypeface-webfont.woff') format('woff'), url('./fonts/PermianSlabSerifTypeface-webfont.ttf') format('truetype'), url('../fonts/PermianSlabSerifTypeface-webfont.svg#permianslabseriftypefaceRg') format('svg');
-        font-weight: normal;
-        font-style: normal;
-    }
-
-    body {
-        font-family: 'permianslabseriftypefaceRg';
-        background: #fff;
-    }
-    /*---start-wrap----*/
-    .wrap {
-        width: 65%;
-        margin: 0 auto;
-        transition: all .2s linear;
-        -moz-transition: all .2s linear; /* firefox */
-        -webkit-transition: all .2s linear; /* safari and chrome */
-        -o-transition: all .2s linear; /* opera */
-        -ms-transition: all .2s linear;
-    }
-
-    .header {
-        padding: 1.5em 0 3em 0;
-    }
-
-    .logo {
-        float: left;
-        margin-top: 0.8em;
-    }
-
-        .logo a {
-            width: 173px;
-            height: 37px;
-            display: block;
-            background: url(../images/logo.png) no-repeat;
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font-size: 100%;
+            font: inherit;
+            vertical-align: baseline;
         }
 
-    .top-nav {
-        float: right;
-    }
-
-        .top-nav ul li {
-            display: inline-block;
-            padding: 1.2em 1em;
+        .clear {
+            clear: both;
         }
 
-            .top-nav ul li:first-child a:before {
-                content: url(../images/home-icon.png) no-repeat 50%;
-                vertical-align: sub;
+        body {
+            font-family: 'permianslabseriftypefaceRg';
+            background: #fff;
+        }
+        /*---start-wrap----*/
+        .wrap {
+            width: 65%;
+            margin: 0 auto;
+            transition: all .2s linear;
+            -moz-transition: all .2s linear; /* firefox */
+            -webkit-transition: all .2s linear; /* safari and chrome */
+            -o-transition: all .2s linear; /* opera */
+            -ms-transition: all .2s linear;
+        }
+        /*---start-slider-banner----*/
+        .slider {
+            background: #F7F7F7;
+            padding: 3em 0;
+        }
+
+        .slider-left {
+            float: left;
+            width: 100%;
+        }
+
+
+            .slider-left input[type="text"] {
+                font-family: 'Open Sans', sans-serif;
+                font-size: 0.875em;
+                color: #A8A8A8;
+                font-weight: 400;
+                border: 1.2px solid rgba(168, 168, 168, 0.33);
+                padding: 0.6em 0.8em;
+                outline: none;
+                width: 89%;
             }
 
-            .top-nav ul li a {
-                color: #222;
-                font-family: 'permianslabseriftypefaceRg';
-                display: block;
+            .slider-left input[type="submit"] {
+                border: none;
+                background: #86C840;
+                padding: .7em 1.6em;
+                font-family: 'Open Sans', sans-serif;
+                cursor: pointer;
+                color: #FFF;
+                text-transform: uppercase;
+                border-radius: 0.2em;
+                outline: none;
                 transition: 0.5s all;
                 -webkit-transition: 0.5s all;
                 -moz-transition: 0.5s all;
                 -o-transition: 0.5s all;
             }
 
-                .top-nav ul li a:hover {
-                    color: #86C840;
+                .slider-left input[type="submit"]:hover {
+                    background: #222;
                 }
 
-            .top-nav ul li.active a {
-                background: url(../images/active-pointer.png) no-repeat 50% 100%;
-                padding-bottom: 15px;
-            }
-    /*---start-slider-banner----*/
-    .slider {
-        background: #F7F7F7;
-        padding: 3em 0;
-    }
+        .slider-right {
+            float: right;
+            width: 50%;
+        }
+        /*---End-slider-banner----*/
 
-    .slider-left {
-        float: left;
-        width: 100%;
-    }
-
-        .slider-left h1 {
-            font-size: 2em;
-            line-height: 1.2em;
-            font-weight: 400;
-            width: 79%;
+        .chat-border {
+            border: #86c840 2px double;
+            height: 400px;
+            float: left;
+            width: 80%;
+            overflow: scroll;
         }
 
-        .slider-left p {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.9em;
-            color: #A8A8A8;
-            width: 79%;
-            font-weight: 400;
-            line-height: 1.8em;
-            margin: 2em 0;
+        .chat-text {
+            padding: 5px 5px 5px 5px;
         }
 
-            .slider-left p label {
-                font-weight: bold;
-            }
-
-        .slider-left label {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.875em;
-            color: #A8A8A8;
-            width: 76%;
-            font-weight: 400;
-            line-height: 1.8em;
-            margin: 0px 0px 0.6em 0;
-            display: block;
+        .chat-border b {
+            font-weight: bold;
         }
 
-        .slider-left input[type="text"] {
-            font-family: 'Open Sans', sans-serif;
-            font-size: 0.875em;
-            color: #A8A8A8;
-            font-weight: 400;
-            border: 1.2px solid rgba(168, 168, 168, 0.33);
-            padding: 0.6em 0.8em;
-            outline: none;
-            width: 89%;
+        .chat-write {
+            border: #86c840 2px double;
+            height: 50px;
         }
 
-        .slider-left input[type="submit"] {
-            border: none;
-            background: #86C840;
-            padding: .7em 1.6em;
-            font-family: 'Open Sans', sans-serif;
-            cursor: pointer;
-            color: #FFF;
-            text-transform: uppercase;
-            border-radius: 0.2em;
-            outline: none;
-            transition: 0.5s all;
-            -webkit-transition: 0.5s all;
-            -moz-transition: 0.5s all;
-            -o-transition: 0.5s all;
+        .chat-write {
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
         }
 
-            .slider-left input[type="submit"]:hover {
-                background: #222;
-            }
-
-    .slider-right {
-        float: right;
-        width: 50%;
-    }
-    /*---End-slider-banner----*/
-
-    .chat-border {
-        border: #86c840 2px double;
-        height: 400px;
-    }
-
-    .chat-text {
-        padding: 5px 5px 5px 5px;
-    }
-
-    .chat-border b {
-        font-weight: bold;
-    }
-
-    .chat-write {
-        border: #86c840 2px double;
-        height: 50px;
-    }
-
-    .chat-write {
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 5px;
-    }
-</style>
+        .online-users {
+            border: #86c840 2px double;
+            width: 50px;
+            float: right;
+            height: 400px;
+            width: 19%;
+        }
+    </style>
 </head>
-    <body>
-        <div class="slider">
-            <div class="wrap">
-                <div class="slider-left">
-                    <h1>Chat Center</h1>
-                    <hr />
-                    <br />
-                    <div class="chat-border" id="chatDiv">
-                        <div class="chat-text">
-                            <b>Uzair : </b> <i>Hey pal How are you?</i>
+<body>
+    <div class="slider">
+        <div class="wrap">
+            <div class="slider-left">
+                <h1>Group Chat </h1> <h3>(beta)</h3>
+                <hr />
+                <br />
+                <div style="display: none" id="chatBox">
+                    <div>
+                        <div class="chat-border" id="chatDiv">
+                            <div class="chat-text">
+                                <b>*****************************      Welcome      *******************************</b>
+                            </div>
                         </div>
+                        <div class="online-users" id="onlineUsers"></div>
                     </div>
-                    <div class="chat-write">
+                    <div>
                         <form id="sendMsg">
                             <input id="txtMessage" type="text" value="Your Message.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Message..';}">
                             <input type="submit" value="Send" />
                         </form>
                     </div>
                 </div>
-                <div class="clear"> </div>
+                
+                <div id="addUser">
+                    <div id="userError"></div>
+                    <form id="newUser">
+                        <input id="txtName" type="text" placeholder="Please Enter a User Name">
+                        <input type="submit" value="Add" />
+                    </form>
+                </div>
             </div>
+            <div class="clear"> </div>
         </div>
+    </div>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        String.prototype.capitalize = function () {
+            return this.charAt(0).toUpperCase() + this.slice(1);
+        };
 
-        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-        <script src="/socket.io/socket.io.js"></script>
-        <script>
-            jQuery(function($) {
-                var socket = io.connect();
-                var $msgForm = $('#sendMsg');
-                var $msgBox = $('#chatDiv');
-                var $msg = $('#txtMessage');
+        jQuery(function ($) {
+            var socket = io.connect();
+            var $msgForm = $('#sendMsg');
+            var $msgBox = $('#chatDiv');
+            var $msg = $('#txtMessage');
 
-                $msgForm.submit(function(e) {
-                    e.preventDefault();
-                    socket.emit('send message', $msg.val());
-                    $msg.val('');
+            var $newUserForm = $('#newUser');
+            var $userName = $('#txtName');
+            var $userError = $('#userError');
+
+            $newUserForm.submit(function (e) {
+                e.preventDefault();
+                socket.emit('new user', $userName.val(), function (data) {
+                    console.log('here');
+                    if (data) {
+                        $('#addUser').hide();
+                        $('#chatBox').show();
+                    } else {
+                        $userError.append('User Name already exist. Try Again');
+                    }
                 });
-
-                socket.on('new message', function (data) {
-                    var html = '<div class="chat-text"><b>Uzair : </b> ' + data + '</div>';
-                    $msgBox.append(html);
-                });
+                $userName.val('');
             });
-        </script>
-    </body>
+
+            $msgForm.submit(function (e) {
+                e.preventDefault();
+                socket.emit('send message', $msg.val());
+                $msg.val('');
+            });
+
+            socket.on('new message', function (data) {
+                var html = '<div class="chat-text"><b>'+ data.name.capitalize() +' : </b> ' + data.msg + '</div>';
+                $msgBox.append(html);
+                $msgBox.animate({ scrollTop: $msgBox[0].scrollHeight }, 1000);
+            });
+
+            socket.on('usernames', function (data) {
+                var html = '';
+                for (var i = 0; i < data.length; i++) {
+                    html += data[i] + '</br>';
+                }
+                $('#onlineUsers').html(html);
+            });
+        });
+    </script>
+</body>
+
 </html>
