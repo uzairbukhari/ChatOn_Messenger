@@ -2,39 +2,246 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Chat On Messenger 1.0.0</title>
-    <style>
-        #chatDiv {
-            height: 300px;
-            background-color: burlywood;
-        }
-    </style>
-</head>
-<body>
-    <div id="chatDiv"></div>
-    <form id="sendMsg">
-        <input size="35" id="txtMessage"/>
-        <input type="submit" />
-    </form>
+    <link rel="shortcut icon" type="image/x-icon" href="images/fave-icon.png" />
+    <link href="style/style.css" rel="stylesheet" />
     
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script>
-        jQuery(function($) {
-            var socket = io.connect();
-            var $msgForm = $('#sendMsg');
-            var $msgBox = $('#chatDiv');
-            var $msg = $('#txtMessage');
+    <style>
+    html, body {
+        margin: 0;
+        padding: 0;
+        border: 0;
+        font-size: 100%;
+        font: inherit;
+        vertical-align: baseline;
+    }
 
-            $msgForm.submit(function(e) {
-                e.preventDefault();
-                socket.emit('send message', $msg.val());
-                $msg.val('');
-            });
+    .clear {
+        clear: both;
+    }
+    /* horizontal menu */
+    img {
+        max-width: 100%;
+    }
 
-            socket.on('new message' , function(data) {
-                $msgBox.append(data + '<br/>');
+    @font-face {
+        font-family: 'permianslabseriftypefaceRg';
+        src: url('./fonts/PermianSlabSerifTypeface-webfont.eot');
+        src: url('./fonts/PermianSlabSerifTypeface-webfont.eot?#iefix') format('embedded-opentype'), url('./fonts/PermianSlabSerifTypeface-webfont.woff') format('woff'), url('./fonts/PermianSlabSerifTypeface-webfont.ttf') format('truetype'), url('../fonts/PermianSlabSerifTypeface-webfont.svg#permianslabseriftypefaceRg') format('svg');
+        font-weight: normal;
+        font-style: normal;
+    }
+
+    body {
+        font-family: 'permianslabseriftypefaceRg';
+        background: #fff;
+    }
+    /*---start-wrap----*/
+    .wrap {
+        width: 65%;
+        margin: 0 auto;
+        transition: all .2s linear;
+        -moz-transition: all .2s linear; /* firefox */
+        -webkit-transition: all .2s linear; /* safari and chrome */
+        -o-transition: all .2s linear; /* opera */
+        -ms-transition: all .2s linear;
+    }
+
+    .header {
+        padding: 1.5em 0 3em 0;
+    }
+
+    .logo {
+        float: left;
+        margin-top: 0.8em;
+    }
+
+        .logo a {
+            width: 173px;
+            height: 37px;
+            display: block;
+            background: url(../images/logo.png) no-repeat;
+        }
+
+    .top-nav {
+        float: right;
+    }
+
+        .top-nav ul li {
+            display: inline-block;
+            padding: 1.2em 1em;
+        }
+
+            .top-nav ul li:first-child a:before {
+                content: url(../images/home-icon.png) no-repeat 50%;
+                vertical-align: sub;
+            }
+
+            .top-nav ul li a {
+                color: #222;
+                font-family: 'permianslabseriftypefaceRg';
+                display: block;
+                transition: 0.5s all;
+                -webkit-transition: 0.5s all;
+                -moz-transition: 0.5s all;
+                -o-transition: 0.5s all;
+            }
+
+                .top-nav ul li a:hover {
+                    color: #86C840;
+                }
+
+            .top-nav ul li.active a {
+                background: url(../images/active-pointer.png) no-repeat 50% 100%;
+                padding-bottom: 15px;
+            }
+    /*---start-slider-banner----*/
+    .slider {
+        background: #F7F7F7;
+        padding: 3em 0;
+    }
+
+    .slider-left {
+        float: left;
+        width: 100%;
+    }
+
+        .slider-left h1 {
+            font-size: 2em;
+            line-height: 1.2em;
+            font-weight: 400;
+            width: 79%;
+        }
+
+        .slider-left p {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.9em;
+            color: #A8A8A8;
+            width: 79%;
+            font-weight: 400;
+            line-height: 1.8em;
+            margin: 2em 0;
+        }
+
+            .slider-left p label {
+                font-weight: bold;
+            }
+
+        .slider-left label {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.875em;
+            color: #A8A8A8;
+            width: 76%;
+            font-weight: 400;
+            line-height: 1.8em;
+            margin: 0px 0px 0.6em 0;
+            display: block;
+        }
+
+        .slider-left input[type="text"] {
+            font-family: 'Open Sans', sans-serif;
+            font-size: 0.875em;
+            color: #A8A8A8;
+            font-weight: 400;
+            border: 1.2px solid rgba(168, 168, 168, 0.33);
+            padding: 0.6em 0.8em;
+            outline: none;
+            width: 89%;
+        }
+
+        .slider-left input[type="submit"] {
+            border: none;
+            background: #86C840;
+            padding: .7em 1.6em;
+            font-family: 'Open Sans', sans-serif;
+            cursor: pointer;
+            color: #FFF;
+            text-transform: uppercase;
+            border-radius: 0.2em;
+            outline: none;
+            transition: 0.5s all;
+            -webkit-transition: 0.5s all;
+            -moz-transition: 0.5s all;
+            -o-transition: 0.5s all;
+        }
+
+            .slider-left input[type="submit"]:hover {
+                background: #222;
+            }
+
+    .slider-right {
+        float: right;
+        width: 50%;
+    }
+    /*---End-slider-banner----*/
+
+    .chat-border {
+        border: #86c840 2px double;
+        height: 400px;
+    }
+
+    .chat-text {
+        padding: 5px 5px 5px 5px;
+    }
+
+    .chat-border b {
+        font-weight: bold;
+    }
+
+    .chat-write {
+        border: #86c840 2px double;
+        height: 50px;
+    }
+
+    .chat-write {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+    }
+</style>
+</head>
+    <body>
+        <div class="slider">
+            <div class="wrap">
+                <div class="slider-left">
+                    <h1>Chat Center</h1>
+                    <hr />
+                    <br />
+                    <div class="chat-border" id="chatDiv">
+                        <div class="chat-text">
+                            <b>Uzair : </b> <i>Hey pal How are you?</i>
+                        </div>
+                    </div>
+                    <div class="chat-write">
+                        <form id="sendMsg">
+                            <input id="txtMessage" type="text" value="Your Message.." onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Your Message..';}">
+                            <input type="submit" value="Send" />
+                        </form>
+                    </div>
+                </div>
+                <div class="clear"> </div>
+            </div>
+        </div>
+
+        <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            jQuery(function($) {
+                var socket = io.connect();
+                var $msgForm = $('#sendMsg');
+                var $msgBox = $('#chatDiv');
+                var $msg = $('#txtMessage');
+
+                $msgForm.submit(function(e) {
+                    e.preventDefault();
+                    socket.emit('send message', $msg.val());
+                    $msg.val('');
+                });
+
+                socket.on('new message', function (data) {
+                    var html = '<div class="chat-text"><b>Uzair : </b> ' + data + '</div>';
+                    $msgBox.append(html);
+                });
             });
-        });
-    </script>
-</body>
+        </script>
+    </body>
 </html>
